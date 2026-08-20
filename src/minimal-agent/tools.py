@@ -22,27 +22,25 @@ TOOLS = {"read_file": read_file, "run_shell": run_shell}
 TOOL_SCHEMAS = [
     {
         "type": "function",
-        "function": {
-            "name": "read_file", "description": "Read a text file.",
-            "parameters": {
-                "type": "object",
-                "properties": {"path": {"type": "string"}},
-                "required": ["path"],
-            },
+        "name": "read_file",
+        "description": "Read a text file.",
+        "parameters": {
+            "type": "object",
+            "properties": {"path": {"type": "string"}},
+            "required": ["path"],
         },
     },
     {
         "type": "function",
-        "function": {
-            "name": "run_shell", "description": "Run a shell command.",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "command": {"type": "string"},
-                    "timeout": {"type": "integer", "default": 30},
-                },
-                "required": ["command"],
+        "name": "run_shell",
+        "description": "Run a shell command.",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "command": {"type": "string"},
+                "timeout": {"type": "integer", "default": 30},
             },
+            "required": ["command"],
         },
     },
 ]

@@ -24,16 +24,16 @@ tool_call ?
 
 ## Run
 
-使用 OpenAI-compatible Chat Completions API：
+使用 Ark Responses API：
 
 ```bash
 cd /Users/bytedance/Desktop/agent-runtime-lab
-export OPENAI_API_KEY="your-api-key"
+export ARK_API_KEY="your-api-key"
 
 python src/minimal-agent/main.py "读取 src/minimal-agent/README.md，然后用一句话总结"
 ```
 
-模型和 API URL 直接改 `llm.py` 顶部的 `MODEL` / `URL`。
+模型和 API URL 直接改 `llm.py` 顶部的 `MODEL` / `BASE_URL`。
 
 ## Tools
 

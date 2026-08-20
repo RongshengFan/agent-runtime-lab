@@ -13,7 +13,7 @@ while True:
     messages.append(response)
 
     if response.get("content"):
-        print("\nassistant:")
+        print("\nagent:")
         print(response["content"])
 
     if not response.get("tool_calls"):
