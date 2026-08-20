@@ -11,10 +11,11 @@ PREVIOUS_RESPONSE_ID = None
 def llm(messages, tools=None):
     global PREVIOUS_RESPONSE_ID
 
-    payload = {"model": MODEL, "input": to_input(messages), "store": True}
+    input_items = to_input(messages)
+    payload = {"model": MODEL, "input": input_items, "store": True}
     if PREVIOUS_RESPONSE_ID:
         payload["previous_response_id"] = PREVIOUS_RESPONSE_ID
-    elif tools:
+    if tools and not is_tool_output(input_items):
         payload["tools"] = tools
 
     api_key = os.getenv("ARK_API_KEY")
@@ -27,6 +28,10 @@ def llm(messages, tools=None):
     data = json.loads(urllib.request.urlopen(request, timeout=120).read().decode("utf-8"))
     PREVIOUS_RESPONSE_ID = data["id"]
     return to_message(data)
+
+
+def is_tool_output(input_items):
+    return input_items and input_items[0].get("type") == "function_call_output"
 
 
 def to_input(messages):
