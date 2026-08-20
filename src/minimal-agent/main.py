@@ -4,18 +4,21 @@ from llm import llm
 from tools import TOOL_SCHEMAS, execute_tool
 
 
+SYSTEM_PROMPT = (
+    "你是一个Mini Agent。默认使用中文回答。"
+    "只有当用户明确要求读取文件或执行 shell 命令时才使用工具；"
+    "如果用户请求不清楚，请用中文追问。"
+    "如果用户只是在简单询问问题或者和你聊天，请用中文回复即可。"
+)
+
 while True:
     prompt = input("user> ").strip()
     if prompt in ("exit", "quit"):
         break
+    if not prompt:
+        continue
 
-    messages = [
-        {
-            "role": "user",
-            "content": "Only use tools when the user explicitly asks to read files or run shell commands. "
-            f"If the request is unclear, ask a short clarification.\n\nUser request: {prompt}",
-        }
-    ]
+    messages = [{"role": "user", "content": f"{SYSTEM_PROMPT}\n\n用户请求：{prompt}"}]
 
     while True:
         response = llm(messages, tools=TOOL_SCHEMAS)

@@ -30,7 +30,7 @@ tool_call ?
 cd /Users/bytedance/Desktop/agent-runtime-lab
 export ARK_API_KEY="your-api-key"
 
-python src/minimal-agent/main.py "读取 src/minimal-agent/README.md，然后用一句话总结"
+python src/minimal-agent/main.py
 ```
 
 如果用 IDE 运行，在 Run Configuration 里设置环境变量 `ARK_API_KEY=your-api-key`。程序会持续显示 `user>`，输入 `exit` 或 `quit` 退出。
